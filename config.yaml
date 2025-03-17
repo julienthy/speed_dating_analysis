@@ -1,0 +1,70 @@
+# Configuration du projet Speed Dating Analysis
+
+# Chemins de données
+data:
+  raw_path: "./data/raw/Speed_dating.csv"
+  processed_path: "./data/processed/clean_data.csv"
+  feature_matrix_path: "./data/processed/feature_matrix.csv"
+
+# Paramètres de preprocessing
+preprocessing:
+  drop_columns: ["iid", "id", "idg", "tuition"]
+  fill_strategy: "median"
+  categorical_encoding: "onehot"
+  scaling: "standard"
+  
+# Paramètres de feature engineering
+features:
+  create_difference_features: true
+  create_ratio_features: true
+  importance_threshold: 0.05
+
+# Paramètres pour l'ACP
+pca:
+  n_components: 0.95
+  apply_to:
+    - "preferences"
+    - "perceptions"
+    - "evaluations"
+
+# Paramètres pour le clustering
+clustering:
+  methods: ["kmeans", "hierarchical"]
+  n_clusters_range: [2, 10]
+  evaluation_metrics: ["silhouette", "calinski_harabasz", "davies_bouldin"]
+
+# Paramètres pour les modèles
+models:
+  test_size: 0.2
+  random_state: 42
+  cross_validation_folds: 5
+  target_variable: "match"
+  algorithms:
+    - name: "logistic_regression"
+      params:
+        C: [0.01, 0.1, 1, 10]
+        penalty: ["l1", "l2"]
+    - name: "random_forest"
+      params:
+        n_estimators: [100, 200, 300]
+        max_depth: [None, 10, 20, 30]
+    - name: "xgboost"
+      params:
+        n_estimators: [100, 200]
+        max_depth: [3, 5, 7]
+        learning_rate: [0.01, 0.1, 0.3]
+
+# Paramètres pour la visualisation
+visualization:
+  style: "seaborn-whitegrid"
+  palette: "viridis"
+  dpi: 300
+  figsize: [10, 6]
+  save_format: "png"
+  save_path: "./reports/figures/"
+
+# Paramètres pour le logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/speed_dating.log"
