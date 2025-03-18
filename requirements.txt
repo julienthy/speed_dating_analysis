@@ -7,11 +7,13 @@ iniconfig==2.0.0
 joblib==1.4.2
 kiwisolver==1.4.8
 matplotlib==3.10.1
+missingno==0.5.2
 narwhals==1.31.0
 numpy==2.2.4
 openpyxl==3.1.5
 packaging==24.2
 pandas==2.2.3
+patsy==1.0.1
 pillow==11.1.0
 plotly==6.0.1
 pluggy==1.5.0
@@ -24,6 +26,7 @@ scikit-learn==1.6.1
 scipy==1.15.2
 seaborn==0.13.2
 six==1.17.0
+statsmodels==0.14.4
 threadpoolctl==3.6.0
 tzdata==2025.1
 xgboost==3.0.0
