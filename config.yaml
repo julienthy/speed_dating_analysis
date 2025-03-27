@@ -5,6 +5,7 @@ data:
   raw_path: "./data/raw/Speed Dating Data.csv"
   processed_path: "./data/processed/clean_speed_dating_data.csv"
   feature_matrix_path: "./data/processed/feature_matrix.csv"
+  encoding: "iso-8859-1"
 
 # Paramètres de preprocessing
 preprocessing:
@@ -61,7 +62,7 @@ visualization:
   dpi: 300
   figsize: [10, 6]
   save_format: "png"
-  save_path: "./reports/figures/"
+  save_path: "figures/"
 
 # Paramètres pour le logging
 logging:

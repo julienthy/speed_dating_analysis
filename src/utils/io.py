@@ -36,7 +36,7 @@ def load_config(config_path: str = "../config.yaml") -> Dict[str, Any]:
         logger.error(f"Fichier de configuration {config_path} non trouvé.")
         raise FileNotFoundError(f"Fichier de configuration {config_path} non trouvé.")
 
-def load_data(file_path: str) -> pd.DataFrame:
+def load_data(file_path: str, encoding: str = "utf-8") -> pd.DataFrame:
     """
     Charge les données depuis un fichier CSV.
     
@@ -57,7 +57,7 @@ def load_data(file_path: str) -> pd.DataFrame:
     _, ext = os.path.splitext(file_path)
     
     if ext.lower() == '.csv':
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, encoding=encoding)
     elif ext.lower() in ['.xls', '.xlsx']:
         df = pd.read_excel(file_path)
     else:

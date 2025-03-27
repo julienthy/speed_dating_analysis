@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import missingno as msno
+from pathlib import Path
 
 def display_head(df: pd.DataFrame, n: int = 5) -> None:
     """
@@ -30,7 +31,7 @@ def display_description(df: pd.DataFrame) -> None:
     """
     print(df.describe())
 
-def plot_missing_values(df: pd.DataFrame, figsize: tuple = (10, 6)) -> None:
+def plot_missing_values(df: pd.DataFrame, figures_path: str, figsize: tuple = (10, 6)) -> None:
     """
     Affiche un heatmap des valeurs manquantes.
     
@@ -40,5 +41,13 @@ def plot_missing_values(df: pd.DataFrame, figsize: tuple = (10, 6)) -> None:
     """
     plt.figure(figsize=figsize)
     msno.matrix(df)
+    plt.title("Matrice des valeurs manquantes")
+    plt.savefig(Path(figures_path)/f"Matrix_missing_values.png")
+    plt.clf()
+    plt.close()
+
+    msno.heatmap(df)
     plt.title("Heatmap des valeurs manquantes")
-    plt.show()
+    plt.savefig(Path(figures_path)/f"Heatmap_missing_values.png")
+    plt.clf()
+    plt.close()
